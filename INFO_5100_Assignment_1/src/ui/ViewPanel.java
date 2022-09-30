@@ -4,6 +4,7 @@
  */
 package ui;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
@@ -246,12 +247,13 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnDelete)
-                        .addComponent(btnView)))
+                        .addComponent(btnView))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblName)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -374,6 +376,55 @@ public class ViewPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtStartDateActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
+        
+         int selectRowIndex = tblEmployees.getSelectedRow();
+      
+      if(selectRowIndex < 0){
+          JOptionPane.showConfirmDialog(this, "Please select a row to delete");
+          return;
+      }
+      
+       DefaultTableModel model = (DefaultTableModel)tblEmployees.getModel();
+      Employee selectedEmp  = (Employee)model.getValueAt(selectRowIndex, 0);
+        
+        
+        String name = txtName.getText();
+        String ageTemp = txtAge.getText();
+        String empId = txtEmpId.getText();
+        //  String gender = genderGroup.getSelection().getActionCommand();
+        String startDatetemp = txtStartDate.getText();
+        String level = txtLevel.getText();
+        String teamInfo = txtTeamInfo.getText();
+        String position = txtPosition.getText();
+        String phone = txtMobile.getText();
+        String email = txtEmail.getText();
+        
+        
+      ArrayList<Employee> empList = empHistory.getEmpList();
+      
+        for (Employee employee : empList) {
+            
+            if(employee.getEmpId() ==  Integer.parseInt(empId)){
+                employee.setName(name);
+                employee.setAge(Integer.parseInt(ageTemp));
+                employee.setLevel(level);
+                employee.setMobileNo(phone);
+                employee.setEmail(email);
+                employee.setPositionTitle(position);
+                employee.setTeamInfo(teamInfo);
+               // employee.setStartDate();
+                
+            }
+            
+        }
+      
+        JOptionPane.showMessageDialog(null, "Employee updated");
+       
+        populateEmployeeTable();
+        
+        
+            
         
     }//GEN-LAST:event_btnUpdateActionPerformed
 
