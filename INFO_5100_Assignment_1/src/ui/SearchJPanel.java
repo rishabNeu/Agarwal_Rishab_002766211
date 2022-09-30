@@ -4,6 +4,12 @@
  */
 package ui;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Employee;
+import model.EmployeeHistory;
+
 /**
  *
  * @author Rishab
@@ -13,8 +19,11 @@ public class SearchJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SearchJPanel
      */
-    public SearchJPanel() {
+    EmployeeHistory empHistory;
+
+    public SearchJPanel(EmployeeHistory history) {
         initComponents();
+        empHistory = history;
     }
 
     /**
@@ -26,232 +35,250 @@ public class SearchJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtLevel = new javax.swing.JTextField();
-        lblTeamInfo = new javax.swing.JLabel();
-        txtStartDate = new javax.swing.JTextField();
-        lblPosition = new javax.swing.JLabel();
-        txtTeamInfo = new javax.swing.JTextField();
-        txtMobile = new javax.swing.JTextField();
-        btnMale = new javax.swing.JRadioButton();
-        txtEmail = new javax.swing.JTextField();
-        btnFemale = new javax.swing.JRadioButton();
-        lblGender = new javax.swing.JLabel();
-        btnOther = new javax.swing.JRadioButton();
-        txtPosition = new javax.swing.JTextField();
-        lblMobile = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
-        txtEmpId = new javax.swing.JTextField();
-        lblName = new javax.swing.JLabel();
-        lblAge = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        txtAge = new javax.swing.JTextField();
-        lblEmpId = new javax.swing.JLabel();
-        lblDate = new javax.swing.JLabel();
-        lblLevel = new javax.swing.JLabel();
+        lblSearchById = new javax.swing.JLabel();
+        txtSearchById = new javax.swing.JTextField();
+        lblSearchTitle = new javax.swing.JLabel();
+        lblSearchByName = new javax.swing.JLabel();
+        txtSearchByName = new javax.swing.JTextField();
+        btnSearchOperation = new javax.swing.JButton();
+        comboSearch = new javax.swing.JComboBox<>();
+        txtComboValue = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEmployees = new javax.swing.JTable();
 
-        lblTeamInfo.setText("Team Information");
+        lblSearchById.setText("Enter an ID :");
 
-        txtStartDate.addActionListener(new java.awt.event.ActionListener() {
+        txtSearchById.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStartDateActionPerformed(evt);
+                txtSearchByIdActionPerformed(evt);
             }
         });
 
-        lblPosition.setText("Position");
+        lblSearchTitle.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
+        lblSearchTitle.setText("Search an Employee");
 
-        btnMale.setText("Male");
-        btnMale.addActionListener(new java.awt.event.ActionListener() {
+        lblSearchByName.setText("Enter a Name :");
+
+        txtSearchByName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMaleActionPerformed(evt);
+                txtSearchByNameActionPerformed(evt);
             }
         });
 
-        btnFemale.setText("Female");
-        btnFemale.addActionListener(new java.awt.event.ActionListener() {
+        btnSearchOperation.setText("Search");
+        btnSearchOperation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFemaleActionPerformed(evt);
-            }
-        });
-        btnFemale.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                btnFemalePropertyChange(evt);
+                btnSearchOperationActionPerformed(evt);
             }
         });
 
-        lblGender.setText("Gender");
+        comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Id", "Age", " " }));
 
-        btnOther.setText("Other");
-        btnOther.addActionListener(new java.awt.event.ActionListener() {
+        txtComboValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOtherActionPerformed(evt);
+                txtComboValueActionPerformed(evt);
             }
         });
 
-        lblMobile.setText("Mobile Number :");
+        tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Name", "Employee ID", "Age", "Gender", "Start Date", "Level", "Team Info", "Position", "Mobile no", "Email"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
 
-        lblEmail.setText("Email");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-        lblName.setText("Name :");
-
-        lblAge.setText("Age :");
-
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-
-        lblEmpId.setText("Employee Id");
-
-        lblDate.setText("Start Date");
-
-        lblLevel.setText("Level");
+        jScrollPane1.setViewportView(tblEmployees);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(151, 151, 151)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTeamInfo)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblEmpId))
-                            .addComponent(lblMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAge)
-                            .addComponent(lblName)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblPosition, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(77, 77, 77)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtEmpId, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtPosition, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtMobile, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnMale, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnOther, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lblLevel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblDate, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGap(169, 169, 169)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(222, Short.MAX_VALUE))
+                        .addComponent(lblSearchByName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblSearchById)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSearchById, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)))
+                .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtComboValue, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(btnSearchOperation)
+                .addGap(148, 148, 148))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(282, 282, 282)
+                .addComponent(lblSearchTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
+                .addComponent(lblSearchTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAge)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblEmpId))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                    .addComponent(lblSearchById)
+                    .addComponent(txtSearchById, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchOperation)
+                    .addComponent(txtComboValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblGender)
-                    .addComponent(btnMale)
-                    .addComponent(btnFemale)
-                    .addComponent(btnOther))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDate)
-                    .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLevel)
-                    .addComponent(txtLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTeamInfo)
-                    .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMobile)
-                    .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPosition)
-                    .addComponent(txtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(197, Short.MAX_VALUE))
+                    .addComponent(lblSearchByName)
+                    .addComponent(txtSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, 69)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(162, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartDateActionPerformed
+    private void txtSearchByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchByIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtStartDateActionPerformed
+    }//GEN-LAST:event_txtSearchByIdActionPerformed
 
-    private void btnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaleActionPerformed
-     //test comment
-    }//GEN-LAST:event_btnMaleActionPerformed
+    private void txtSearchByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchByNameActionPerformed
 
-    private void btnFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFemaleActionPerformed
+
+    }//GEN-LAST:event_txtSearchByNameActionPerformed
+
+    private void btnSearchOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchOperationActionPerformed
+
+        
+        boolean isPresent = false;
+        //list we got now 
+        ArrayList<Employee> empList = empHistory.getEmpList();
+
+        
+        String comboSearchType = comboSearch.getSelectedItem().toString();
+        
+        String comboValue = txtComboValue.getText();
+        
+        ArrayList<Employee> searchedEmployeeList = new ArrayList<>();
+        
+        if(comboSearchType.equalsIgnoreCase("Name"))
+        {
+            for (Employee employee : empList) {
+                  if ( employee.getName().contains(comboValue)) {
+
+                      searchedEmployeeList.add(employee);
+                      isPresent = true;
+                  }
+            }
+        }
+        else if(comboSearchType.equalsIgnoreCase("Id")){
+              for (Employee employee : empList) {
+
+                if (Integer.parseInt(comboValue) == employee.getEmpId()) {
+
+                    searchedEmployeeList.add(employee);
+                    isPresent = true;
+                    //photo , start date and gender remaining
+                }
+                
+
+            }
+         }
+         else if(comboSearchType.equalsIgnoreCase("Age")){
+              for (Employee employee : empList) {
+
+                if (Integer.parseInt(comboValue) == employee.getAge()) {
+
+                    searchedEmployeeList.add(employee);
+                    isPresent = true;
+       
+                    //photo , start date and gender remaining
+                }
+                
+
+            }
+         }
+        
+        
+        if(isPresent==false){
+            JOptionPane.showMessageDialog(null,"No Records found");
+            return;
+        }
+        
+        
+        DefaultTableModel model = (DefaultTableModel)tblEmployees.getModel();
+        
+        model.setRowCount(0);
+        
+        for (Employee emp : searchedEmployeeList) {
+           Object[] row = new Object[10];        
+           row[0] = emp;
+           row[1] = emp.getEmpId();
+           row[2]= emp.getAge();
+           row[3] = emp.getGender();
+           row[4]= emp.getStartDate();
+           row[5] = emp.getLevel();
+           row[6]= emp.getTeamInfo();
+           row[7] = emp.getPositionTitle();
+           row[8]= emp.getMobileNo();
+           row[9]= emp.getEmail();
+        
+           model.addRow(row);   
+            
+        }
+        
+        
+        
+        
+        
+        
+        //need to iterate and find the match for id
+
+        
+       
+
+
+    }//GEN-LAST:event_btnSearchOperationActionPerformed
+
+    private void txtComboValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComboValueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnFemaleActionPerformed
-
-    private void btnFemalePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_btnFemalePropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFemalePropertyChange
-
-    private void btnOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOtherActionPerformed
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
+    }//GEN-LAST:event_txtComboValueActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton btnFemale;
-    private javax.swing.JRadioButton btnMale;
-    private javax.swing.JRadioButton btnOther;
-    private javax.swing.JLabel lblAge;
-    private javax.swing.JLabel lblDate;
-    private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblEmpId;
-    private javax.swing.JLabel lblGender;
-    private javax.swing.JLabel lblLevel;
-    private javax.swing.JLabel lblMobile;
-    private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblPosition;
-    private javax.swing.JLabel lblTeamInfo;
-    private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEmpId;
-    private javax.swing.JTextField txtLevel;
-    private javax.swing.JTextField txtMobile;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPosition;
-    private javax.swing.JTextField txtStartDate;
-    private javax.swing.JTextField txtTeamInfo;
+    private javax.swing.JButton btnSearchOperation;
+    private javax.swing.JComboBox<String> comboSearch;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblSearchById;
+    private javax.swing.JLabel lblSearchByName;
+    private javax.swing.JLabel lblSearchTitle;
+    private javax.swing.JTable tblEmployees;
+    private javax.swing.JTextField txtComboValue;
+    private javax.swing.JTextField txtSearchById;
+    private javax.swing.JTextField txtSearchByName;
     // End of variables declaration//GEN-END:variables
 }

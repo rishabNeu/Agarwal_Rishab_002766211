@@ -59,10 +59,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         lblLevel = new javax.swing.JLabel();
         lblTeamInfo = new javax.swing.JLabel();
         lblPosition = new javax.swing.JLabel();
-        btnMale = new javax.swing.JRadioButton();
-        btnFemale = new javax.swing.JRadioButton();
         lblGender = new javax.swing.JLabel();
-        btnOther = new javax.swing.JRadioButton();
         lblMobile = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         lblPhoto = new javax.swing.JLabel();
@@ -74,6 +71,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtEmail = new javax.swing.JTextField();
         btnUpload = new javax.swing.JButton();
         txtPosition = new javax.swing.JTextField();
+        comboGender = new javax.swing.JComboBox<>();
 
         lblTitle.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 14)); // NOI18N
         lblTitle.setText("Create Employee");
@@ -105,36 +103,7 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         lblPosition.setText("Position");
 
-        genderGroup.add(btnMale);
-        btnMale.setText("Male");
-        btnMale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMaleActionPerformed(evt);
-            }
-        });
-
-        genderGroup.add(btnFemale);
-        btnFemale.setText("Female");
-        btnFemale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFemaleActionPerformed(evt);
-            }
-        });
-        btnFemale.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                btnFemalePropertyChange(evt);
-            }
-        });
-
         lblGender.setText("Gender");
-
-        genderGroup.add(btnOther);
-        btnOther.setText("Other");
-        btnOther.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOtherActionPerformed(evt);
-            }
-        });
 
         lblMobile.setText("Mobile Number :");
 
@@ -152,6 +121,13 @@ public class CreateJPanel extends javax.swing.JPanel {
         btnUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUploadActionPerformed(evt);
+            }
+        });
+
+        comboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a value", "Male", "Female", "Other" }));
+        comboGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboGenderActionPerformed(evt);
             }
         });
 
@@ -188,13 +164,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                                             .addComponent(txtPosition, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtMobile, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnUpload, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnMale, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnOther, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(btnUpload, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
                                         .addGap(136, 136, 136))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,14 +175,16 @@ public class CreateJPanel extends javax.swing.JPanel {
                                     .addGap(169, 169, 169)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(comboGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(174, 174, 174)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(257, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 472, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblAge, lblName});
@@ -222,7 +194,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,12 +209,10 @@ public class CreateJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblGender)
-                    .addComponent(btnMale)
-                    .addComponent(btnFemale)
-                    .addComponent(btnOther))
-                .addGap(21, 21, 21)
+                    .addComponent(comboGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDate)
                     .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -288,7 +258,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         String name = txtName.getText();
         String ageTemp = txtAge.getText();
         String empId = txtEmpId.getText();
-        //  String gender = genderGroup.getSelection().getActionCommand();
+         String gender = comboGender.getSelectedItem().toString();
         String startDatetemp = txtStartDate.getText();
         String level = txtLevel.getText();
         String teamInfo = txtTeamInfo.getText();
@@ -381,29 +351,17 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnUploadActionPerformed
 
-    private void btnFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFemaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFemaleActionPerformed
-
-    private void btnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMaleActionPerformed
-
-    private void btnOtherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOtherActionPerformed
-
-    private void btnFemalePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_btnFemalePropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFemalePropertyChange
+    private void comboGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGenderActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_comboGenderActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton btnFemale;
-    private javax.swing.JRadioButton btnMale;
-    private javax.swing.JRadioButton btnOther;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpload;
+    private javax.swing.JComboBox<String> comboGender;
     private javax.swing.ButtonGroup genderGroup;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblDate;
@@ -462,7 +420,16 @@ public class CreateJPanel extends javax.swing.JPanel {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Employee Id!");
             txtEmpId.requestFocus();
-        } else if (txtStartDate.getText().equals("") && isDateValid(txtStartDate.getText())==false) {
+        }
+        
+          else if (comboGender.getSelectedItem().toString().equals("Select a value")) {
+            val = false;
+            JOptionPane.showMessageDialog(null, "Please select an appropriate gender ");
+            txtEmpId.requestFocus();
+        }
+        
+          
+        else if (txtStartDate.getText().equals("") && isDateValid(txtStartDate.getText())==false) {
                       
             val = false;
             

@@ -34,6 +34,11 @@ public class EmployeeHistory {
         return emp;
         
     }
+    
+    
+    public ArrayList<Employee> getEmployeeList(){
+        return empList;
+    }
 
 //    public Employee updateEmployee(Employee selectedEmp , int selectRowIndex){
 //        

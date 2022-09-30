@@ -62,6 +62,11 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
@@ -132,6 +137,11 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
             ViewPanel viewPanel = new ViewPanel(empHistory); // creating an object of CreatePanel class and passing it to split pane
         jSplitPane1.setRightComponent(viewPanel);    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        SearchJPanel searchPanel = new SearchJPanel(empHistory); // creating an object of CreatePanel class and passing it to split pane
+        jSplitPane1.setRightComponent(searchPanel); 
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
