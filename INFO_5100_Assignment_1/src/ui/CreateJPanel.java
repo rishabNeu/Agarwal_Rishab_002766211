@@ -28,6 +28,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewJPanel
      */
+    String filePath = "";
     private EmployeeHistory empHistory;
 
     public CreateJPanel(EmployeeHistory history) {
@@ -86,6 +87,17 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
+        txtAge.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAgeMouseClicked(evt);
+            }
+        });
+        txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAgeKeyReleased(evt);
+            }
+        });
+
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,9 +123,29 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         lblPhoto.setText("Photo");
 
+        txtEmpId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmpIdKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmpIdKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmpIdKeyTyped(evt);
+            }
+        });
+
         txtStartDate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStartDateActionPerformed(evt);
+            }
+        });
+        txtStartDate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtStartDateKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStartDateKeyTyped(evt);
             }
         });
 
@@ -173,18 +205,17 @@ public class CreateJPanel extends javax.swing.JPanel {
                                         .addComponent(lblLevel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lblDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGap(169, 169, 169)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(comboGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtLevel, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                                        .addComponent(txtStartDate, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                                        .addComponent(comboGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(174, 174, 174)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(257, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(137, 472, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblAge, lblName});
@@ -258,7 +289,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         String name = txtName.getText();
         String ageTemp = txtAge.getText();
         String empId = txtEmpId.getText();
-         String gender = comboGender.getSelectedItem().toString();
+        String gender = comboGender.getSelectedItem().toString();
         String startDatetemp = txtStartDate.getText();
         String level = txtLevel.getText();
         String teamInfo = txtTeamInfo.getText();
@@ -288,8 +319,9 @@ public class CreateJPanel extends javax.swing.JPanel {
 
             if (isDateValid(startDatetemp) == false) {
 
-                JOptionPane.showMessageDialog(null, "Please enter the date in dd/MM/yyyy format" );
+                JOptionPane.showMessageDialog(null, "Please enter the date in dd/MM/yyyy format");
                 txtStartDate.requestFocus();
+
             }
 
             int id = Integer.parseInt(empId);
@@ -312,8 +344,8 @@ public class CreateJPanel extends javax.swing.JPanel {
             emp.setEmail(email);
             emp.setPositionTitle(position);
             emp.setTeamInfo(teamInfo);
-            //emp.setStartDate(startDate);
-
+            //emp.setStartDate(Date.parse());
+            emp.setPhoto(filePath);
             System.out.println(emp.toString());
 
             JOptionPane.showMessageDialog(this, "New Employee Created");
@@ -327,6 +359,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             txtMobile.setText("");
             txtEmail.setText("");
             txtPosition.setText("");
+            comboGender.setSelectedIndex(0);
         }
 
 
@@ -338,24 +371,67 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
 
-        if (evt.getSource() == btnUpload) {
-            JFileChooser fileUpload = new JFileChooser();
-
-            int resp = fileUpload.showOpenDialog(null);
-
-            if (resp == JFileChooser.APPROVE_OPTION) {
-                File filePath = new File(fileUpload.getSelectedFile().getAbsolutePath());
-            }
-
-        }
+        JFileChooser filePicker = new JFileChooser();
+        filePicker.showOpenDialog(null);
+        File file = filePicker.getSelectedFile();
+        filePath = file.getAbsolutePath();
 
     }//GEN-LAST:event_btnUploadActionPerformed
 
     private void comboGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGenderActionPerformed
-        
-        
-        
+
+
     }//GEN-LAST:event_comboGenderActionPerformed
+
+    private void txtAgeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyReleased
+
+        if (isNumeric(txtAge.getText()) == false) {
+
+            JOptionPane.showMessageDialog(null, "Please enter the Employee Age in numeric format only");
+           txtAge.requestFocus();
+        }
+        
+        
+
+    }//GEN-LAST:event_txtAgeKeyReleased
+
+    private void txtEmpIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpIdKeyTyped
+
+    }//GEN-LAST:event_txtEmpIdKeyTyped
+
+    private void txtEmpIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpIdKeyReleased
+        if (isNumeric(txtEmpId.getText()) == false) {
+
+            JOptionPane.showMessageDialog(null, "Please enter the Employee Id in numeric format only");
+            txtEmpId.requestFocus();
+        }
+//        if (isNumeric(txtEmpId.getText()) == false) {
+//
+//            JOptionPane.showMessageDialog(null, "Please enter the age in numeric format only");
+//            txtEmpId.requestFocus();
+//        }    }//GEN-LAST:event_txtEmpIdKeyReleased
+    }
+
+
+    private void txtEmpIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpIdKeyPressed
+
+    }//GEN-LAST:event_txtEmpIdKeyPressed
+
+    private void txtAgeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAgeMouseClicked
+
+    }//GEN-LAST:event_txtAgeMouseClicked
+
+    private void txtStartDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStartDateKeyReleased
+        
+        
+    }//GEN-LAST:event_txtStartDateKeyReleased
+
+    private void txtStartDateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStartDateKeyTyped
+        if(isDateValid(txtStartDate.getText()) == false){
+           JOptionPane.showMessageDialog(null, "Please enter the date in dd/MM/yyyy format");
+               txtStartDate.requestFocus();
+        }
+    }//GEN-LAST:event_txtStartDateKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -409,40 +485,29 @@ public class CreateJPanel extends javax.swing.JPanel {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the name!");
             txtName.requestFocus();
-        }
-        else if (txtAge.getText().equals("")) {
+        } else if (txtAge.getText().equals("")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Employee Age!");
             txtAge.requestFocus();
-        } 
-        
-        else if (txtEmpId.getText().equals("")) {
+        } else if (txtEmpId.getText().equals("")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Employee Id!");
             txtEmpId.requestFocus();
-        }
-        
-          else if (comboGender.getSelectedItem().toString().equals("Select a value")) {
+        } else if (comboGender.getSelectedItem().toString().equals("Select a value")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please select an appropriate gender ");
             txtEmpId.requestFocus();
-        }
-        
-          
-        else if (txtStartDate.getText().equals("") && isDateValid(txtStartDate.getText())==false) {
-                      
+        } else if (txtStartDate.getText().equals("") && isDateValid(txtStartDate.getText()) == false) {
+
             val = false;
-            
+
             JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date!");
             txtStartDate.requestFocus();
-            
-            if(isDateValid(txtStartDate.getText())==false){
-                JOptionPane.showMessageDialog(null, "Please enter the date in dd/MM/yyyy format" );
-                txtStartDate.requestFocus();
-            }
-           
-            
-            
+
+//            if(isDateValid(txtStartDate.getText())==false){
+//                JOptionPane.showMessageDialog(null, "Please enter the date in dd/MM/yyyy format" );
+//                txtStartDate.requestFocus();
+//            }
         } //gender did not add
         // date on hold
         else if (txtLevel.getText().equals("")) {
@@ -476,8 +541,8 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private boolean isDateValid(String startDate) {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-         formatter.setLenient(false);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        formatter.setLenient(false);
         Date parsedDate = null;
         try {
             parsedDate = formatter.parse(startDate);

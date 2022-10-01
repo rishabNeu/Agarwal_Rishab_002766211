@@ -4,7 +4,7 @@
  */
 package ui;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
@@ -35,35 +35,15 @@ public class SearchJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblSearchById = new javax.swing.JLabel();
-        txtSearchById = new javax.swing.JTextField();
         lblSearchTitle = new javax.swing.JLabel();
-        lblSearchByName = new javax.swing.JLabel();
-        txtSearchByName = new javax.swing.JTextField();
         btnSearchOperation = new javax.swing.JButton();
         comboSearch = new javax.swing.JComboBox<>();
         txtComboValue = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmployees = new javax.swing.JTable();
 
-        lblSearchById.setText("Enter an ID :");
-
-        txtSearchById.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchByIdActionPerformed(evt);
-            }
-        });
-
         lblSearchTitle.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         lblSearchTitle.setText("Search an Employee");
-
-        lblSearchByName.setText("Enter a Name :");
-
-        txtSearchByName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchByNameActionPerformed(evt);
-            }
-        });
 
         btnSearchOperation.setText("Search");
         btnSearchOperation.addActionListener(new java.awt.event.ActionListener() {
@@ -112,33 +92,22 @@ public class SearchJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSearchByName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSearchById)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtSearchById, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)))
-                .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtComboValue, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addComponent(btnSearchOperation)
-                .addGap(148, 148, 148))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(282, 282, 282)
-                .addComponent(lblSearchTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtComboValue, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addComponent(btnSearchOperation)
+                .addGap(180, 180, 180))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblSearchTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(265, 265, 265))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,29 +116,14 @@ public class SearchJPanel extends javax.swing.JPanel {
                 .addComponent(lblSearchTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSearchById)
-                    .addComponent(txtSearchById, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchOperation)
                     .addComponent(txtComboValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSearchByName)
-                    .addComponent(txtSearchByName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGap(125, 125, 125)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(162, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtSearchByIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchByIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchByIdActionPerformed
-
-    private void txtSearchByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchByNameActionPerformed
-
-
-    }//GEN-LAST:event_txtSearchByNameActionPerformed
 
     private void btnSearchOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchOperationActionPerformed
 
@@ -182,6 +136,13 @@ public class SearchJPanel extends javax.swing.JPanel {
         String comboSearchType = comboSearch.getSelectedItem().toString();
         
         String comboValue = txtComboValue.getText();
+        
+        if(comboValue.equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter something in the search box" );
+            txtComboValue.requestFocus();
+            return;
+        }
+        
         
         ArrayList<Employee> searchedEmployeeList = new ArrayList<>();
         
@@ -202,7 +163,6 @@ public class SearchJPanel extends javax.swing.JPanel {
 
                     searchedEmployeeList.add(employee);
                     isPresent = true;
-                    //photo , start date and gender remaining
                 }
                 
 
@@ -215,20 +175,16 @@ public class SearchJPanel extends javax.swing.JPanel {
 
                     searchedEmployeeList.add(employee);
                     isPresent = true;
-       
-                    //photo , start date and gender remaining
                 }
                 
 
             }
          }
         
-        
-        if(isPresent==false){
+         if(isPresent==false){
             JOptionPane.showMessageDialog(null,"No Records found");
             return;
         }
-        
         
         DefaultTableModel model = (DefaultTableModel)tblEmployees.getModel();
         
@@ -273,12 +229,8 @@ public class SearchJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSearchOperation;
     private javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblSearchById;
-    private javax.swing.JLabel lblSearchByName;
     private javax.swing.JLabel lblSearchTitle;
     private javax.swing.JTable tblEmployees;
     private javax.swing.JTextField txtComboValue;
-    private javax.swing.JTextField txtSearchById;
-    private javax.swing.JTextField txtSearchByName;
     // End of variables declaration//GEN-END:variables
 }

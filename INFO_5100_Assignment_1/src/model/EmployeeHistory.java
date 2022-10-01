@@ -40,15 +40,7 @@ public class EmployeeHistory {
         return empList;
     }
 
-//    public Employee updateEmployee(Employee selectedEmp , int selectRowIndex){
-//        
-////        empList.re
-////        //empList.set(selectRowIndex, selectedEmp)
-////        
-////        return emp;
-//        
-//    }
-    
+
     
     public void deleteEmployee(Employee selectedEmp) {
 
