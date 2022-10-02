@@ -76,6 +76,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         btnUpload = new javax.swing.JButton();
         txtPosition = new javax.swing.JTextField();
         comboGender = new javax.swing.JComboBox<>();
+        lblUploadSuccess = new javax.swing.JLabel();
 
         lblTitle.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 18)); // NOI18N
         lblTitle.setText("Create Employee");
@@ -201,7 +202,8 @@ public class CreateJPanel extends javax.swing.JPanel {
                                             .addComponent(txtMobile, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnUpload, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
-                                        .addGap(136, 136, 136))))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblUploadSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -219,7 +221,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(182, 182, 182)
                         .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblAge, lblName});
@@ -270,7 +272,8 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPhoto)
-                    .addComponent(btnUpload))
+                    .addComponent(btnUpload)
+                    .addComponent(lblUploadSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPosition)
@@ -300,121 +303,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         String position = txtPosition.getText();
         String phone = txtMobile.getText();
         String email = txtEmail.getText();
-        
-        //validations
-        //name
-//        if (txtName.getText().length()==0) {
-//
-//            JOptionPane.showMessageDialog(null, "Please enter the name!");
-//            txtName.requestFocus();
-//            txtName.setText("");
-//        } else {
-//            String pattern = "^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)";
-//            Pattern patternToMatch = Pattern.compile(pattern);
-//            Matcher match = patternToMatch.matcher(name);
-//            if (!match.matches()) {
-//                //System.out.println("Naming is incorrect);
-//                JOptionPane.showMessageDialog(null, "Enter the name properly. It is Invalid");
-//                txtName.requestFocus();
-//                txtName.setText("");
-//            }
-//        }
-        //age
-//            if (txtAge.getText().equals("")) {
-//                JOptionPane.showMessageDialog(null, "Please enter the Employee Age!");
-//                txtAge.requestFocus();
-//                txtAge.setText("");
-//            } else {
-//
-//                if (isNumeric(txtAge.getText()) == false) {
-//                    JOptionPane.showMessageDialog(null, "Please enter the age in numeric format only");
-//                    txtAge.requestFocus();
-//                    txtAge.setText("");
-//                } else if (Integer.parseInt(txtAge.getText()) < 21 && Integer.parseInt(txtAge.getText()) > 60) {
-//                    JOptionPane.showMessageDialog(null, "Please enter the age in proper range which is 20 to 60 only");
-//                    txtAge.requestFocus();
-//                    txtAge.setText("");
-//                }
-//
-//            }
-        //Emp ID
-//            if (txtEmpId.equals("")) {
-//                JOptionPane.showMessageDialog(null, "Please enter the Employee Id!");
-//                txtEmpId.requestFocus();
-//                txtEmpId.setText("");
-//            } else {
-//
-//                if (isNumeric(empId) == false) {
-//                    JOptionPane.showMessageDialog(null, "Please enter the Employee ID in numeric format!");
-//                    txtEmpId.requestFocus();
-//                    txtEmpId.setText("");
-//                }
-//
-//            }
-        // gender
-//            if (comboGender.getSelectedItem().toString().equals("Select a value")) {
-//                JOptionPane.showMessageDialog(null, "Please select an appropriate gender ");
-//                //set focus
-//            }
-        //Start Date
-//            if (startDatetemp.equals("")) {
-//                JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date!");
-//                txtStartDate.requestFocus();
-//                txtStartDate.setText("");
-//            } else {
-//                if (isDateValid(startDatetemp) == false) {
-//                    JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date in proper format dd/MM/yyyy!");
-//                    txtStartDate.requestFocus();
-//                    txtStartDate.setText("");
-//                }
-//            }
-        //level
-//            if (level.equals("")) {
-//                JOptionPane.showMessageDialog(null, "Please enter the Employee Level!");
-//                txtLevel.requestFocus();
-//                txtLevel.setText("");
-//            }
-//            if (teamInfo.equals("")) {
-//                JOptionPane.showMessageDialog(null, "Please enter the Employee Team Information!");
-//                txtTeamInfo.requestFocus();
-//                txtTeamInfo.setText("");
-//            }
-//
-//            if (position.equals("")) {
-//                JOptionPane.showMessageDialog(null, "Please enter the Employee Position!");
-//                txtPosition.requestFocus();
-//            }
-//            if (phone.equals("")) {
-//                JOptionPane.showMessageDialog(null, "Please enter the Mobile number!");
-//                txtMobile.requestFocus();
-//                txtMobile.setText("");
-//
-//            } else {
-//
-//                String patternPhone = "^[0-9]{0,10}$";
-//
-//                Pattern phonePatternToMatch = Pattern.compile(patternPhone);
-//                Matcher matchPhone = phonePatternToMatch.matcher(phone);
-//
-//                if (!matchPhone.matches() && phone.length()!=10) {
-//                     JOptionPane.showMessageDialog(null, "Invalid Phone number!");
-//                    txtMobile.requestFocus();
-//                    txtMobile.setText("");
-//                }
-//            }
-//            if(email.equals("")){
-//               
-//            JOptionPane.showMessageDialog(null, "Please enter the Email Address!");
-//            txtEmail.requestFocus();
-//            txtEmail.setText("");
-//            }else{
-//                if(emailValidation(email)==false){
-//                    JOptionPane.showMessageDialog(null, "Invalid email ID ");
-//                    txtEmail.requestFocus();
-//                    txtEmail.setText("");
-//                }
-//            }
-        //end of validation
+
         boolean isValid = validateData();
 
         if (isValid == true) {
@@ -423,20 +312,21 @@ public class CreateJPanel extends javax.swing.JPanel {
             Employee emp = empHistory.addEmployee();
             emp.setName(name);
             emp.setAge(Integer.parseInt(txtAge.getText()));
-            
+
             emp.setEmpId(Integer.parseInt(empId));
-            
-            
+
             emp.setGender(gender);
             emp.setLevel(level);
             emp.setMobileNo(phone);
             emp.setEmail(email);
             emp.setPositionTitle(position);
             emp.setTeamInfo(teamInfo);
-            
+
             emp.setStartDate(txtStartDate.getText());
-           
-            emp.setPhoto(filePath);
+
+            if (!filePath.equals("")) {
+                emp.setPhoto(filePath);
+            }
 
             JOptionPane.showMessageDialog(this, "New Employee Created");
             txtName.setText("");
@@ -450,6 +340,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             txtEmail.setText("");
             txtPosition.setText("");
             comboGender.setSelectedIndex(0);
+            lblUploadSuccess.setText("");
         }
 
 
@@ -465,6 +356,12 @@ public class CreateJPanel extends javax.swing.JPanel {
         filePicker.showOpenDialog(null);
         File file = filePicker.getSelectedFile();
         filePath = file.getAbsolutePath();
+
+        if (filePath.equals("")) {
+            JOptionPane.showMessageDialog(null, "Not able to upload");
+        } else {
+            lblUploadSuccess.setText("Uploaded Successfully");
+        }
 
     }//GEN-LAST:event_btnUploadActionPerformed
 
@@ -525,6 +422,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblPosition;
     private javax.swing.JLabel lblTeamInfo;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblUploadSuccess;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEmpId;
@@ -560,8 +458,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter the name!");
             txtName.requestFocus();
             return false;
-        } 
-        else {
+        } else {
             String pattern = "^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$";
 
             Pattern patternToMatch = Pattern.compile(pattern);
@@ -581,8 +478,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter the Employee Age!");
             txtAge.requestFocus();
             return false;
-        } 
-        else {
+        } else {
             if (isNumeric(txtAge.getText()) == false) {
                 JOptionPane.showMessageDialog(null, "Please enter the age in numeric format only");
                 txtAge.requestFocus();
@@ -603,17 +499,14 @@ public class CreateJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter the Employee Id!");
             txtEmpId.requestFocus();
             return false;
-        } 
-        else {
+        } else {
             if (isNumeric(txtEmpId.getText()) == false) {
                 JOptionPane.showMessageDialog(null, "Please enter the Employee ID in numeric format!");
                 txtEmpId.requestFocus();
                 txtEmpId.setText("");
                 val = false;
                 return false;
-            }
-            else if(searchForSameId(txtEmpId.getText())==true)
-            {
+            } else if (searchForSameId(txtEmpId.getText()) == true) {
                 JOptionPane.showMessageDialog(null, "Please enter a Unique Employee ID as this already exists!");
                 txtEmpId.requestFocus();
                 txtEmpId.setText("");
@@ -635,8 +528,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date!");
             txtStartDate.requestFocus();
             return false;
-        } 
-        else {
+        } else {
             if (isDateValid(txtStartDate.getText()) == false) {
                 JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date in proper format dd/MM/yyyy!");
                 txtStartDate.requestFocus();
@@ -663,16 +555,21 @@ public class CreateJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter the Mobile number!");
             txtMobile.requestFocus();
             return false;
-        } 
-        else {
+        } else {
 
             String patternPhone = "^[0-9]{0,10}$";
 
             Pattern phonePatternToMatch = Pattern.compile(patternPhone);
             Matcher matchPhone = phonePatternToMatch.matcher(txtMobile.getText());
 
-            if (!matchPhone.matches() || txtMobile.getText().length() != 10) {
+            if (!matchPhone.matches()) {
                 JOptionPane.showMessageDialog(null, "Invalid Phone number!");
+                val = false;
+                txtMobile.requestFocus();
+                txtMobile.setText("");
+                return false;
+            } else if (txtMobile.getText().length() != 10) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid 10 digit mobile number");
                 val = false;
                 txtMobile.requestFocus();
                 txtMobile.setText("");
@@ -686,8 +583,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter the Email Address!");
             txtEmail.requestFocus();
             return false;
-        } 
-        else {
+        } else {
             if (emailValidation(txtEmail.getText()) == false) {
                 JOptionPane.showMessageDialog(null, "Invalid email ID ");
                 val = false;
@@ -749,18 +645,18 @@ public class CreateJPanel extends javax.swing.JPanel {
         return parsedDate;
 
     }
-    
-    public boolean searchForSameId(String empId){
-        ArrayList<Employee> employeeList =empHistory.getEmpList();
-            
-            for (Employee employee : employeeList) {
-                
-                if(Integer.parseInt(empId) == employee.getEmpId()){
-                    return true;
-                }
-               
+
+    public boolean searchForSameId(String empId) {
+        ArrayList<Employee> employeeList = empHistory.getEmpList();
+
+        for (Employee employee : employeeList) {
+
+            if (Integer.parseInt(empId) == employee.getEmpId()) {
+                return true;
+            }
+
+        }
+        return false;
     }
-         return false;   
-    }
-    
+
 }

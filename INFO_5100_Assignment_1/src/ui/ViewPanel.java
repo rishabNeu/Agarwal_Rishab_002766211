@@ -77,7 +77,7 @@ public class ViewPanel extends javax.swing.JPanel {
         lblEmpId = new javax.swing.JLabel();
         lblPhoto = new javax.swing.JLabel();
         btnUpload = new javax.swing.JButton();
-        txtUpload = new javax.swing.JTextField();
+        lblUploadSuccessful = new javax.swing.JLabel();
 
         lblView.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblView.setText("View Employee");
@@ -183,11 +183,6 @@ public class ViewPanel extends javax.swing.JPanel {
             }
         });
 
-        txtUpload.setEditable(false);
-        txtUpload.setBackground(new java.awt.Color(204, 255, 204));
-        txtUpload.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtUpload.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -207,13 +202,16 @@ public class ViewPanel extends javax.swing.JPanel {
                                     .addComponent(lblPosition)
                                     .addComponent(btnUpload))
                                 .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                                    .addComponent(txtPosition, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                                    .addComponent(txtTeamInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                                    .addComponent(txtLevel, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                                    .addComponent(lblUploadSuccessful, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -225,29 +223,27 @@ public class ViewPanel extends javax.swing.JPanel {
                                             .addComponent(lblGender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addComponent(lblDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(comboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtAge)
-                                    .addComponent(txtEmpId)
-                                    .addComponent(txtName))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnView)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(btnDelete))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(comboGender, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtAge)
+                                        .addComponent(txtEmpId)
+                                        .addComponent(txtName)))))
                         .addGap(53, 53, 53)
                         .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(336, 336, 336)
-                        .addComponent(lblView))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(btnView)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnDelete)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnUpdate)))
+                        .addComponent(lblView)))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {comboGender, txtAge, txtEmail, txtEmpId, txtLevel, txtMobile, txtName, txtPosition, txtStartDate, txtTeamInfo, txtUpload});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {comboGender, txtAge, txtEmail, txtEmpId, txtLevel, txtMobile, txtName, txtPosition, txtStartDate, txtTeamInfo});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnUpload, lblAge, lblDate, lblEmail, lblEmpId, lblGender, lblLevel, lblMobile, lblName, lblPosition, lblTeamInfo});
 
@@ -266,8 +262,7 @@ public class ViewPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDelete)
-                            .addComponent(btnView)
-                            .addComponent(btnUpdate))
+                            .addComponent(btnView))
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblName)
@@ -311,11 +306,13 @@ public class ViewPanel extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpload)
-                    .addComponent(txtUpload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(116, Short.MAX_VALUE))
+                    .addComponent(lblUploadSuccessful, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {comboGender, txtAge, txtEmail, txtEmpId, txtLevel, txtMobile, txtName, txtPosition, txtStartDate, txtTeamInfo, txtUpload});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {comboGender, txtAge, txtEmail, txtEmpId, txtLevel, txtMobile, txtName, txtPosition, txtStartDate, txtTeamInfo});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnUpload, lblAge, lblDate, lblEmail, lblEmpId, lblGender, lblLevel, lblMobile, lblName, lblPosition, lblTeamInfo});
 
@@ -430,12 +427,7 @@ public class ViewPanel extends javax.swing.JPanel {
             selectedEmp.setMobileNo(phone);
             selectedEmp.setEmail(email);
             selectedEmp.setPositionTitle(position);
-
-            if (!filePath.equals("")) {
-
-                selectedEmp.setPhoto(filePath);
-                txtUpload.setText("Uploaded Successfully");
-            }
+            selectedEmp.setPhoto(filePath);
 
             JOptionPane.showMessageDialog(null, "Employee updated");
 
@@ -452,6 +444,9 @@ public class ViewPanel extends javax.swing.JPanel {
             txtEmail.setText("");
             txtPosition.setText("");
             comboGender.setSelectedIndex(0);
+            lblPhoto.setText(null);
+
+            lblUploadSuccessful.setText("");
 
         }
 
@@ -468,6 +463,12 @@ public class ViewPanel extends javax.swing.JPanel {
         filePicker.showOpenDialog(null);
         File file = filePicker.getSelectedFile();
         filePath = file.getAbsolutePath();
+
+        if (filePath.equals("")) {
+            lblUploadSuccessful.setText("Not able to upload the photo");
+        } else {
+            lblUploadSuccessful.setText("Photo Uploaded Successfully");
+        }
 
 
     }//GEN-LAST:event_btnUploadActionPerformed
@@ -491,6 +492,7 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblPosition;
     private javax.swing.JLabel lblTeamInfo;
+    private javax.swing.JLabel lblUploadSuccessful;
     private javax.swing.JLabel lblView;
     private javax.swing.JTable tblEmployees;
     private javax.swing.JTextField txtAge;
@@ -502,7 +504,6 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtPosition;
     private javax.swing.JTextField txtStartDate;
     private javax.swing.JTextField txtTeamInfo;
-    private javax.swing.JTextField txtUpload;
     // End of variables declaration//GEN-END:variables
 
     private void populateEmployeeTable() {
@@ -647,8 +648,14 @@ public class ViewPanel extends javax.swing.JPanel {
             Pattern phonePatternToMatch = Pattern.compile(patternPhone);
             Matcher matchPhone = phonePatternToMatch.matcher(txtMobile.getText());
 
-            if (!matchPhone.matches() || txtMobile.getText().length() != 10) {
+            if (!matchPhone.matches()) {
                 JOptionPane.showMessageDialog(null, "Invalid Phone number!");
+                val = false;
+                txtMobile.requestFocus();
+                txtMobile.setText("");
+                return false;
+            } else if (txtMobile.getText().length() != 10) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid 10 digit mobile number");
                 val = false;
                 txtMobile.requestFocus();
                 txtMobile.setText("");
@@ -741,6 +748,7 @@ public class ViewPanel extends javax.swing.JPanel {
         txtEmail.setText("");
         txtPosition.setText("");
         comboGender.setSelectedIndex(0);
+        lblUploadSuccessful.setText("");
     }
 
     private void SetProfilePhoto(String photo) {

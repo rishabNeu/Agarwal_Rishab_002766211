@@ -111,7 +111,7 @@ public class SearchJPanel extends javax.swing.JPanel {
         });
 
         btnViewImage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnViewImage.setText("Select a record & Click Here to View Image");
+        btnViewImage.setText("Click Here to View Image");
         btnViewImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewImageActionPerformed(evt);
@@ -273,9 +273,12 @@ public class SearchJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();
         Employee selectedEmp = (Employee) model.getValueAt(selectRowIndex, 0);
 
-        if(!selectedEmp.getPhoto().equals(""))
-        {
+        if (selectedEmp.getPhoto() == null) {
+            JOptionPane.showMessageDialog(null, "Photo not found for this profile");
+
+        } else {
             SetProfilePhoto(selectedEmp.getPhoto());
+
         }
 
     }//GEN-LAST:event_btnViewImageActionPerformed
