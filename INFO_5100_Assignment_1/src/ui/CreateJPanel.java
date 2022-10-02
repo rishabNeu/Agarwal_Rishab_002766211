@@ -8,10 +8,13 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JFileChooser;
@@ -296,57 +299,143 @@ public class CreateJPanel extends javax.swing.JPanel {
         String position = txtPosition.getText();
         String phone = txtMobile.getText();
         String email = txtEmail.getText();
-
-        //boolean isValid =validateData();
-        // validation for Integer values like age , temp    
-        // Validation for null or empty fields
+        
+        //validations
+        //name
+//        if (txtName.getText().length()==0) {
+//
+//            JOptionPane.showMessageDialog(null, "Please enter the name!");
+//            txtName.requestFocus();
+//            txtName.setText("");
+//        } else {
+//            String pattern = "^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)";
+//            Pattern patternToMatch = Pattern.compile(pattern);
+//            Matcher match = patternToMatch.matcher(name);
+//            if (!match.matches()) {
+//                //System.out.println("Naming is incorrect);
+//                JOptionPane.showMessageDialog(null, "Enter the name properly. It is Invalid");
+//                txtName.requestFocus();
+//                txtName.setText("");
+//            }
+//        }
+        //age
+//            if (txtAge.getText().equals("")) {
+//                JOptionPane.showMessageDialog(null, "Please enter the Employee Age!");
+//                txtAge.requestFocus();
+//                txtAge.setText("");
+//            } else {
+//
+//                if (isNumeric(txtAge.getText()) == false) {
+//                    JOptionPane.showMessageDialog(null, "Please enter the age in numeric format only");
+//                    txtAge.requestFocus();
+//                    txtAge.setText("");
+//                } else if (Integer.parseInt(txtAge.getText()) < 21 && Integer.parseInt(txtAge.getText()) > 60) {
+//                    JOptionPane.showMessageDialog(null, "Please enter the age in proper range which is 20 to 60 only");
+//                    txtAge.requestFocus();
+//                    txtAge.setText("");
+//                }
+//
+//            }
+        //Emp ID
+//            if (txtEmpId.equals("")) {
+//                JOptionPane.showMessageDialog(null, "Please enter the Employee Id!");
+//                txtEmpId.requestFocus();
+//                txtEmpId.setText("");
+//            } else {
+//
+//                if (isNumeric(empId) == false) {
+//                    JOptionPane.showMessageDialog(null, "Please enter the Employee ID in numeric format!");
+//                    txtEmpId.requestFocus();
+//                    txtEmpId.setText("");
+//                }
+//
+//            }
+        // gender
+//            if (comboGender.getSelectedItem().toString().equals("Select a value")) {
+//                JOptionPane.showMessageDialog(null, "Please select an appropriate gender ");
+//                //set focus
+//            }
+        //Start Date
+//            if (startDatetemp.equals("")) {
+//                JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date!");
+//                txtStartDate.requestFocus();
+//                txtStartDate.setText("");
+//            } else {
+//                if (isDateValid(startDatetemp) == false) {
+//                    JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date in proper format dd/MM/yyyy!");
+//                    txtStartDate.requestFocus();
+//                    txtStartDate.setText("");
+//                }
+//            }
+        //level
+//            if (level.equals("")) {
+//                JOptionPane.showMessageDialog(null, "Please enter the Employee Level!");
+//                txtLevel.requestFocus();
+//                txtLevel.setText("");
+//            }
+//            if (teamInfo.equals("")) {
+//                JOptionPane.showMessageDialog(null, "Please enter the Employee Team Information!");
+//                txtTeamInfo.requestFocus();
+//                txtTeamInfo.setText("");
+//            }
+//
+//            if (position.equals("")) {
+//                JOptionPane.showMessageDialog(null, "Please enter the Employee Position!");
+//                txtPosition.requestFocus();
+//            }
+//            if (phone.equals("")) {
+//                JOptionPane.showMessageDialog(null, "Please enter the Mobile number!");
+//                txtMobile.requestFocus();
+//                txtMobile.setText("");
+//
+//            } else {
+//
+//                String patternPhone = "^[0-9]{0,10}$";
+//
+//                Pattern phonePatternToMatch = Pattern.compile(patternPhone);
+//                Matcher matchPhone = phonePatternToMatch.matcher(phone);
+//
+//                if (!matchPhone.matches() && phone.length()!=10) {
+//                     JOptionPane.showMessageDialog(null, "Invalid Phone number!");
+//                    txtMobile.requestFocus();
+//                    txtMobile.setText("");
+//                }
+//            }
+//            if(email.equals("")){
+//               
+//            JOptionPane.showMessageDialog(null, "Please enter the Email Address!");
+//            txtEmail.requestFocus();
+//            txtEmail.setText("");
+//            }else{
+//                if(emailValidation(email)==false){
+//                    JOptionPane.showMessageDialog(null, "Invalid email ID ");
+//                    txtEmail.requestFocus();
+//                    txtEmail.setText("");
+//                }
+//            }
+        //end of validation
         boolean isValid = validateData();
 
         if (isValid == true) {
 
-            //Further functionality 
-            if (isNumeric(ageTemp) == false) {
-
-                JOptionPane.showMessageDialog(null, "Please enter the age in numeric format only");
-                txtAge.requestFocus();
-            }
-            int age = Integer.parseInt(ageTemp);
-
-            if (isNumeric(empId) == false) {
-                JOptionPane.showMessageDialog(null, "Please enter the Employee Id in numeric format only");
-                txtEmpId.requestFocus();
-            }
-
-            if (isDateValid(startDatetemp) == false) {
-
-                JOptionPane.showMessageDialog(null, "Please enter the date in dd/MM/yyyy format");
-                txtStartDate.requestFocus();
-
-            }
-
-            int id = Integer.parseInt(empId);
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-
-//       Date startDate = null;
-//        try {
-//            startDate = formatter.parse(startDatetemp);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(CreateJPanel.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+            //Setting the employee object
             Employee emp = empHistory.addEmployee();
             emp.setName(name);
-            emp.setAge(age);
-            emp.setEmpId(id);
-            emp.setGender("male");
+            emp.setAge(Integer.parseInt(txtAge.getText()));
+            
+            emp.setEmpId(Integer.parseInt(empId));
+            
+            
+            emp.setGender(gender);
             emp.setLevel(level);
             emp.setMobileNo(phone);
             emp.setEmail(email);
             emp.setPositionTitle(position);
             emp.setTeamInfo(teamInfo);
-            //emp.setStartDate(Date.parse());
+            
+            emp.setStartDate(txtStartDate.getText());
+           
             emp.setPhoto(filePath);
-            System.out.println(emp.toString());
 
             JOptionPane.showMessageDialog(this, "New Employee Created");
             txtName.setText("");
@@ -385,14 +474,6 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void txtAgeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyReleased
 
-        if (isNumeric(txtAge.getText()) == false) {
-
-            JOptionPane.showMessageDialog(null, "Please enter the Employee Age in numeric format only");
-           txtAge.requestFocus();
-        }
-        
-        
-
     }//GEN-LAST:event_txtAgeKeyReleased
 
     private void txtEmpIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpIdKeyTyped
@@ -400,15 +481,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtEmpIdKeyTyped
 
     private void txtEmpIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpIdKeyReleased
-        if (isNumeric(txtEmpId.getText()) == false) {
 
-            JOptionPane.showMessageDialog(null, "Please enter the Employee Id in numeric format only");
-            txtEmpId.requestFocus();
-        }
-//        if (isNumeric(txtEmpId.getText()) == false) {
-//
-//            JOptionPane.showMessageDialog(null, "Please enter the age in numeric format only");
-//            txtEmpId.requestFocus();
 //        }    }//GEN-LAST:event_txtEmpIdKeyReleased
     }
 
@@ -422,15 +495,15 @@ public class CreateJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtAgeMouseClicked
 
     private void txtStartDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStartDateKeyReleased
-        
-        
+
+
     }//GEN-LAST:event_txtStartDateKeyReleased
 
     private void txtStartDateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStartDateKeyTyped
-        if(isDateValid(txtStartDate.getText()) == false){
-           JOptionPane.showMessageDialog(null, "Please enter the date in dd/MM/yyyy format");
-               txtStartDate.requestFocus();
-        }
+//        if (isDateValid(txtStartDate.getText()) == false) {
+//            JOptionPane.showMessageDialog(null, "Please enter the date in dd/MM/yyyy format");
+//            txtStartDate.requestFocus();
+//        }
     }//GEN-LAST:event_txtStartDateKeyTyped
 
 
@@ -479,60 +552,155 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private boolean validateData() {
 
-        boolean val = false;
+        boolean val = true;
 
         if (txtName.getText().equals("")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the name!");
             txtName.requestFocus();
-        } else if (txtAge.getText().equals("")) {
+            return false;
+        } 
+        else {
+            String pattern = "^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$";
+
+            Pattern patternToMatch = Pattern.compile(pattern);
+            Matcher match = patternToMatch.matcher(txtName.getText());
+            if (!match.matches()) {
+                //System.out.println("Naming is incorrect);
+                JOptionPane.showMessageDialog(null, "Enter the name properly. It is Invalid");
+                txtName.requestFocus();
+                txtName.setText("");
+                val = false;
+                return false;
+            }
+        }
+
+        if (txtAge.getText().equals("")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Employee Age!");
             txtAge.requestFocus();
-        } else if (txtEmpId.getText().equals("")) {
+            return false;
+        } 
+        else {
+            if (isNumeric(txtAge.getText()) == false) {
+                JOptionPane.showMessageDialog(null, "Please enter the age in numeric format only");
+                txtAge.requestFocus();
+                txtAge.setText("");
+                val = false;
+                return false;
+            } else if (Integer.parseInt(txtAge.getText()) < 21 || Integer.parseInt(txtAge.getText()) > 60) {
+                JOptionPane.showMessageDialog(null, "Please enter the age in proper range which is 20 to 60 only");
+                txtAge.requestFocus();
+                txtAge.setText("");
+                val = false;
+                return false;
+            }
+        }
+
+        if (txtEmpId.getText().equals("")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Employee Id!");
             txtEmpId.requestFocus();
-        } else if (comboGender.getSelectedItem().toString().equals("Select a value")) {
+            return false;
+        } 
+        else {
+            if (isNumeric(txtEmpId.getText()) == false) {
+                JOptionPane.showMessageDialog(null, "Please enter the Employee ID in numeric format!");
+                txtEmpId.requestFocus();
+                txtEmpId.setText("");
+                val = false;
+                return false;
+            }
+            else if(searchForSameId(txtEmpId.getText())==true)
+            {
+                JOptionPane.showMessageDialog(null, "Please enter a Unique Employee ID as this already exists!");
+                txtEmpId.requestFocus();
+                txtEmpId.setText("");
+                return false;
+            }
+        }
+
+        if (comboGender.getSelectedItem().toString().equals("Select a value")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please select an appropriate gender ");
-            txtEmpId.requestFocus();
-        } else if (txtStartDate.getText().equals("") && isDateValid(txtStartDate.getText()) == false) {
+            comboGender.setSelectedIndex(0);
+            return false;
+        }
+
+        if (txtStartDate.getText().equals("") && isDateValid(txtStartDate.getText()) == false) {
 
             val = false;
 
             JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date!");
             txtStartDate.requestFocus();
+            return false;
+        } 
+        else {
+            if (isDateValid(txtStartDate.getText()) == false) {
+                JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date in proper format dd/MM/yyyy!");
+                txtStartDate.requestFocus();
+                txtStartDate.setText("");
+                val = false;
+                return false;
+            }
+        }
 
-//            if(isDateValid(txtStartDate.getText())==false){
-//                JOptionPane.showMessageDialog(null, "Please enter the date in dd/MM/yyyy format" );
-//                txtStartDate.requestFocus();
-//            }
-        } //gender did not add
-        // date on hold
-        else if (txtLevel.getText().equals("")) {
+        if (txtLevel.getText().equals("")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Employee Level!");
             txtLevel.requestFocus();
+            return false;
         } else if (txtTeamInfo.getText().equals("")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Employee Team Information!");
             txtTeamInfo.requestFocus();
-        } else if (txtPosition.getText().equals("")) {
-            val = false;
-            JOptionPane.showMessageDialog(null, "Please enter the Employee Position!");
-            txtPosition.requestFocus();
-        } else if (txtMobile.getText().equals("")) {
+            return false;
+        }
+
+        if (txtMobile.getText().equals("")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Mobile number!");
             txtMobile.requestFocus();
-        } else if (txtEmail.getText().equals("")) {
+            return false;
+        } 
+        else {
+
+            String patternPhone = "^[0-9]{0,10}$";
+
+            Pattern phonePatternToMatch = Pattern.compile(patternPhone);
+            Matcher matchPhone = phonePatternToMatch.matcher(txtMobile.getText());
+
+            if (!matchPhone.matches() || txtMobile.getText().length() != 10) {
+                JOptionPane.showMessageDialog(null, "Invalid Phone number!");
+                val = false;
+                txtMobile.requestFocus();
+                txtMobile.setText("");
+                return false;
+            }
+        }
+
+        if (txtEmail.getText().equals("")) {
 
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Email Address!");
             txtEmail.requestFocus();
-        } else {
-            val = true;
+            return false;
+        } 
+        else {
+            if (emailValidation(txtEmail.getText()) == false) {
+                JOptionPane.showMessageDialog(null, "Invalid email ID ");
+                val = false;
+                txtEmail.requestFocus();
+                txtEmail.setText("");
+                return false;
+            }
+        }
+
+        if (txtPosition.getText().equals("")) {
+            val = false;
+            JOptionPane.showMessageDialog(null, "Please enter the Employee Position!");
+            txtPosition.requestFocus();
+            return false;
         }
 
         return val;
@@ -553,4 +721,45 @@ public class CreateJPanel extends javax.swing.JPanel {
         }
         return true;
     }
+
+    private boolean emailValidation(String email) {
+
+        String pattern
+                = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern patternToMatch = Pattern.compile(pattern);
+        Matcher match = patternToMatch.matcher(email);
+
+        if (!match.matches()) {
+
+            return false;
+        }
+        return true;
+
+    }
+
+    private Date convertStringToDate(String startDate) throws ParseException {
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date parsedDate = null;
+        parsedDate = formatter.parse(startDate);
+
+        return parsedDate;
+
+    }
+    
+    public boolean searchForSameId(String empId){
+        ArrayList<Employee> employeeList =empHistory.getEmpList();
+            
+            for (Employee employee : employeeList) {
+                
+                if(Integer.parseInt(empId) == employee.getEmpId()){
+                    return true;
+                }
+               
+    }
+         return false;   
+    }
+    
 }

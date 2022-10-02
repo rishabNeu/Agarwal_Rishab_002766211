@@ -4,7 +4,7 @@
  */
 package ui;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
@@ -41,6 +41,7 @@ public class SearchJPanel extends javax.swing.JPanel {
         txtComboValue = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmployees = new javax.swing.JTable();
+        btnClear = new javax.swing.JButton();
 
         lblSearchTitle.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         lblSearchTitle.setText("Search an Employee");
@@ -53,6 +54,11 @@ public class SearchJPanel extends javax.swing.JPanel {
         });
 
         comboSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Id", "Age", " " }));
+        comboSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSearchActionPerformed(evt);
+            }
+        });
 
         txtComboValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +94,13 @@ public class SearchJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblEmployees);
 
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,9 +114,11 @@ public class SearchJPanel extends javax.swing.JPanel {
                 .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtComboValue, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addComponent(btnSearchOperation)
-                .addGap(180, 180, 180))
+                .addGap(18, 18, 18)
+                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(147, 147, 147))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblSearchTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -118,7 +133,8 @@ public class SearchJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchOperation)
-                    .addComponent(txtComboValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtComboValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear))
                 .addGap(125, 125, 125)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(162, Short.MAX_VALUE))
@@ -127,95 +143,77 @@ public class SearchJPanel extends javax.swing.JPanel {
 
     private void btnSearchOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchOperationActionPerformed
 
-        
         boolean isPresent = false;
         //list we got now 
         ArrayList<Employee> empList = empHistory.getEmpList();
 
-        
         String comboSearchType = comboSearch.getSelectedItem().toString();
-        
+
         String comboValue = txtComboValue.getText();
-        
-        if(comboValue.equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter something in the search box" );
+
+        if (comboValue.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter something in the search box");
             txtComboValue.requestFocus();
             return;
         }
-        
-        
-        ArrayList<Employee> searchedEmployeeList = new ArrayList<>();
-        
-        if(comboSearchType.equalsIgnoreCase("Name"))
-        {
-            for (Employee employee : empList) {
-                  if ( employee.getName().contains(comboValue)) {
 
-                      searchedEmployeeList.add(employee);
-                      isPresent = true;
-                  }
+        ArrayList<Employee> searchedEmployeeList = new ArrayList<>();
+
+        if (comboSearchType.equalsIgnoreCase("Name")) {
+            for (Employee employee : empList) {
+                if (employee.getName().contains(comboValue)) {
+
+                    searchedEmployeeList.add(employee);
+                    isPresent = true;
+                }
             }
-        }
-        else if(comboSearchType.equalsIgnoreCase("Id")){
-              for (Employee employee : empList) {
+        } else if (comboSearchType.equalsIgnoreCase("Id")) {
+            for (Employee employee : empList) {
 
                 if (Integer.parseInt(comboValue) == employee.getEmpId()) {
 
                     searchedEmployeeList.add(employee);
                     isPresent = true;
                 }
-                
 
             }
-         }
-         else if(comboSearchType.equalsIgnoreCase("Age")){
-              for (Employee employee : empList) {
+        } else if (comboSearchType.equalsIgnoreCase("Age")) {
+            for (Employee employee : empList) {
 
                 if (Integer.parseInt(comboValue) == employee.getAge()) {
 
                     searchedEmployeeList.add(employee);
                     isPresent = true;
                 }
-                
 
             }
-         }
-        
-         if(isPresent==false){
-            JOptionPane.showMessageDialog(null,"No Records found");
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();
+
+        model.setRowCount(0);
+
+        for (Employee emp : searchedEmployeeList) {
+            Object[] row = new Object[10];
+            row[0] = emp;
+            row[1] = emp.getEmpId();
+            row[2] = emp.getAge();
+            row[3] = emp.getGender();
+            row[4] = emp.getStartDate();    
+            row[5] = emp.getLevel();
+            row[6] = emp.getTeamInfo();
+            row[7] = emp.getPositionTitle();
+            row[8] = emp.getMobileNo();
+            row[9] = emp.getEmail();
+
+            model.addRow(row);
+
+        }
+
+        if (isPresent == false) {
+            JOptionPane.showMessageDialog(null, "No Records found");
             return;
         }
-        
-        DefaultTableModel model = (DefaultTableModel)tblEmployees.getModel();
-        
-        model.setRowCount(0);
-        
-        for (Employee emp : searchedEmployeeList) {
-           Object[] row = new Object[10];        
-           row[0] = emp;
-           row[1] = emp.getEmpId();
-           row[2]= emp.getAge();
-           row[3] = emp.getGender();
-           row[4]= emp.getStartDate();
-           row[5] = emp.getLevel();
-           row[6]= emp.getTeamInfo();
-           row[7] = emp.getPositionTitle();
-           row[8]= emp.getMobileNo();
-           row[9]= emp.getEmail();
-        
-           model.addRow(row);   
-            
-        }
-        
-        
-        
-        
-        
-        
-        //need to iterate and find the match for id
-
-        
-       
 
 
     }//GEN-LAST:event_btnSearchOperationActionPerformed
@@ -224,8 +222,24 @@ public class SearchJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtComboValueActionPerformed
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+
+        txtComboValue.setText("");
+        DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+        // comboSearch.setse
+
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void comboSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboSearchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnSearchOperation;
     private javax.swing.JComboBox<String> comboSearch;
     private javax.swing.JScrollPane jScrollPane1;

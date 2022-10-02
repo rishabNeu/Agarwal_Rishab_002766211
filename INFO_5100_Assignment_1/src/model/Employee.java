@@ -18,12 +18,12 @@ public class Employee {
     private int empId;
     private int age;
     private String gender;
-    private Date startDate;
+    private String startDate;
     private String level;
     private String teamInfo;
     private String positionTitle;
     private String photo;
-   //private ContactInfo contact;
+
 
     private String email;
     private String mobileNo;
@@ -81,11 +81,11 @@ public class Employee {
         this.gender = gender;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
