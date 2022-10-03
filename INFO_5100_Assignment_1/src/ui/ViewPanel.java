@@ -356,15 +356,11 @@ public class ViewPanel extends javax.swing.JPanel {
 
         empHistory.deleteEmployee(selectedEmp);
         SetProfilePhoto("");
-        
-        
+
         JOptionPane.showMessageDialog(null, "Employee Deleted!");
 
         populateEmployeeTable();
 
-        
-        
-        
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -454,12 +450,10 @@ public class ViewPanel extends javax.swing.JPanel {
             selectedEmp.setMobileNo(phone);
             selectedEmp.setEmail(email);
             selectedEmp.setPositionTitle(position);
-            
-            if(!lblUploadSuccessful.getText().isEmpty())
-            {
+
+            if (!lblUploadSuccessful.getText().isEmpty()) {
                 selectedEmp.setPhoto(filePath);
             }
-            
 
             JOptionPane.showMessageDialog(null, "Employee updated");
 
@@ -648,13 +642,15 @@ public class ViewPanel extends javax.swing.JPanel {
             txtStartDate.requestFocus();
             return false;
         } else {
-            if (isDateValid(txtStartDate.getText()) == false) {
-                JOptionPane.showMessageDialog(null, "Please enter the Employee Start Date in proper format dd/MM/yyyy!");
+            
+            if (!(txtStartDate.getText().matches("^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$"))) {
+                JOptionPane.showMessageDialog(this, "Please enter the Employee Start Date in proper format mm/dd/yyyy!");
                 txtStartDate.requestFocus();
                 txtStartDate.setText("");
                 val = false;
                 return false;
             }
+
         }
 
         if (txtLevel.getText().equals("")) {
