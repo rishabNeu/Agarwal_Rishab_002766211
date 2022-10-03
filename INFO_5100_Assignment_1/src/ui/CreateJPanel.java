@@ -574,6 +574,15 @@ public class CreateJPanel extends javax.swing.JPanel {
             return false;
         }
 
+        
+         if (txtPosition.getText().equals("")) {
+            val = false;
+            JOptionPane.showMessageDialog(null, "Please enter the Employee Position!");
+            txtPosition.requestFocus();
+            return false;
+        }
+
+        
         if (txtMobile.getText().equals("")) {
             val = false;
             JOptionPane.showMessageDialog(null, "Please enter the Mobile number!");
@@ -616,14 +625,16 @@ public class CreateJPanel extends javax.swing.JPanel {
                 return false;
             }
         }
-   
-        if (txtPosition.getText().equals("")) {
-            val = false;
-            JOptionPane.showMessageDialog(null, "Please enter the Employee Position!");
-            txtPosition.requestFocus();
-            return false;
+        
+        if(lblUploadSuccess.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Please select a photo ");
+                val = false;
+                return false;
         }
-
+        
+   
+       
         return val;
 
     }

@@ -177,7 +177,8 @@ public class SearchJPanel extends javax.swing.JPanel {
         String comboSearchType = comboSearch.getSelectedItem().toString();
 
         String comboValue = txtComboValue.getText();
-
+        
+        
         if (comboValue.equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter something in the search box");
             txtComboValue.requestFocus();
@@ -188,16 +189,25 @@ public class SearchJPanel extends javax.swing.JPanel {
 
         if (comboSearchType.equalsIgnoreCase("Name")) {
             for (Employee employee : empList) {
-                if (employee.getName().contains(comboValue)) {
+                if (employee.getName().toLowerCase().contains(comboValue.toLowerCase())) {
 
                     searchedEmployeeList.add(employee);
                     isPresent = true;
                 }
             }
         } else if (comboSearchType.equalsIgnoreCase("Id")) {
+            
+            //isNumeric check
+            if(isNumeric(comboValue)==false){
+                JOptionPane.showMessageDialog(this,"Please enter in numeric format only");
+                txtComboValue.requestFocus();
+                txtComboValue.setText("");
+                return;
+            }
+            
             for (Employee employee : empList) {
 
-                if (Integer.parseInt(comboValue) == employee.getEmpId()) {
+                     if (Integer.parseInt(comboValue)== employee.getEmpId()) {
 
                     searchedEmployeeList.add(employee);
                     isPresent = true;
@@ -205,9 +215,18 @@ public class SearchJPanel extends javax.swing.JPanel {
 
             }
         } else if (comboSearchType.equalsIgnoreCase("Age")) {
+            
+             //isNumeric check
+            if(isNumeric(comboValue)==false){
+                JOptionPane.showMessageDialog(this,"Please enter in numeric format only");
+                txtComboValue.requestFocus();
+                txtComboValue.setText("");
+                return;
+            }
+            
             for (Employee employee : empList) {
 
-                if (Integer.parseInt(comboValue) == employee.getAge()) {
+                if (Integer.parseInt(comboValue)== employee.getAge()) {
 
                     searchedEmployeeList.add(employee);
                     isPresent = true;
@@ -305,4 +324,20 @@ public class SearchJPanel extends javax.swing.JPanel {
         ImageIcon icon = new ImageIcon(img);
         lblPhoto.setIcon(icon);
     }
+    
+    private boolean isNumeric(String value) {
+
+        if (value == null || value == "") {
+            return false;
+        }
+        try {
+            int temp = Integer.parseInt(value);
+
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+
+    }
+    
 }
